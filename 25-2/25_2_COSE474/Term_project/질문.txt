@@ -1,0 +1,102 @@
+[논문1]
+좋아, 그 5개를 **발표 시간에 직접 할 수 있는 질문 형태**로 깔끔하게 다듬어줄게.
+바로 복붙해서 제출/읽으면 되는 버전이야.
+
+---
+
+## Final Question List (English, for submission & Q&A)
+
+Q1. Assumption behind the “debiasing direction”
+In the paper, the difference between the gradients on the less-biased and biased batches, \nabla L_{lb} - \nabla L_b, is treated as a kind of debiasing direction.
+From your understanding, in what situations do you think this assumption might fail? 
+For example, what if both batches still share the same dominant spurious feature, or if the minority samples are so few that the gradient on the less-biased batch is dominated by noise rather than truly non-spurious features?
+
+---
+
+**Q3. Choosing and scheduling the extrapolation factor beta**
+The authors derive bounds on beta so that p_{ext}(a|y) remains a valid distribution, and larger beta emphasizes worst-group risk.
+Have you thought about using an adaptive or scheduled beta during training—for example, starting near ERM with beta approximate to -1(beta ~(위아래 물결 두 개를 표시하고 싶었습니다.) 1) and gradually increasing it to strengthen debiasing? What do you think would be the main challenges in designing such a schedule?
+
+---
+
+**Q8. Extending GERNE beyond explicit group labels**
+GERNE currently relies on explicit (or pseudo) group labels for the attribute "a" to construct biased and less-biased batches.
+Do you see any way to extend this idea to settings where we do not have such group labels? 
+For example, by defining bias levels directly in a learned feature space using clustering or causal feature discovery? 
+What would be the main theoretical or practical obstacles in doing that?
+
+---
+
+**Q9. Computational overhead and large-scale training**
+GERNE requires computing losses and gradients on two separate batches per step, which roughly doubles the training cost.
+In large-scale settings like ViT pre-training, how realistic do you think it is to adopt GERNE as-is? Can you think of any variants that approximate GERNE with fewer forward/backward passes (e.g., re-using gradients or importance weighting) while keeping most of the debiasing effect?
+
+---
+
+**Q10. Behavior on nearly unbiased datasets**
+The paper mentions that GERNE can also be applied to datasets that are already close to unbiased.
+In such cases, do you think an improperly chosen beta or "c" could actually hurt performance by over-emphasizing rare but noisy patterns? 
+Would it make sense to have some diagnostic or heuristic that detects when the training distribution is already fairly balanced and then automatically pushes beta back toward -1 (i.e., closer to standard ERM)?
+
+---
+
+## 한국어 짧은 메모 (네가 발표 때 쉽게 떠올리라고)
+
+* Q1: “gradient 차이를 디바이어싱 방향이라고 보는 가정이 언제 깨질 수 있을지?”
+* Q3: “(\beta)를 고정값 말고, 학습하면서 점점 키우는 스케줄은 어떤 문제/장점이 있을지?”
+* Q8: “그룹 라벨이 없을 때, feature space/clustering/causal로 bias level 정의해서 GERNE 확장 가능할지?”
+* Q9: “한 스텝에 두 배치 써서 연산량 2배인데, 대규모 모델에서 현실적인지 / 근사 버전 아이디어?”
+* Q10: “데이터셋이 원래 거의 unbiased라면, GERNE가 오히려 rare+noise를 과대평가해서 성능 떨어뜨릴 위험은 없는지, 자동으로 꺼버리는 진단 가능성?”
+
+이대로 제출하면 “논문을 깊게 읽고 비판적으로 생각한 질문” 느낌 충분히 날 거야.
+
+[질문 2]
+
+Here are five polished questions you can submit to your professor (aimed at the *presenter* of the SketchVideo paper, but showing that you really understood the method):
+
+---
+
+**Q1. Layer selection and control strength**
+
+In SketchVideo, sketch control blocks are inserted only at five uniformly spaced layers (0, 6, 12, 18, 24) of the 30-layer DiT backbone, instead of controlling every layer or duplicating a large part of the network as in ControlNet-style approaches.
+From your understanding of the paper, why is this particular choice of five evenly spaced control layers reasonable? 
+How do you expect the behavior of the model to change if we add sketch control to many more layers, or restrict it to only one or two very shallow / very deep layers?
+
+---
+
+**Q2. Design of inter-frame attention (Q/K from video, V from sketch)**
+
+The inter-frame attention module uses queries and keys from the video latents, while values come from sketch-derived features at the keyframes. 
+This is an asymmetric design compared to more standard cross-attention (where K and V often come from the same source).
+Could you explain, in your own words, what advantage this design has for propagating sketch constraints over time? 
+Do you see any potential failure cases (e.g., fast motion or strong occlusion) where relying on video-based keys might provide inaccurate temporal correspondences and thus distort the sketch guidance?
+
+---
+
+**Q3. Hybrid image–video training and its trade-offs**
+
+The paper adopts a hybrid training strategy: first learning sketch control with both images and videos, and then further refining temporal consistency with video-only training.
+How do you think the balance between image-based and video-based training affects the final model? 
+For example, if we emphasize image data too much, could the model overfit to single-frame geometry at the expense of smooth motion? 
+Conversely, what do you think would happen if we trained only on video data without any image phase?
+
+---
+
+**Q4. Inpainting-style training vs. realistic user editing**
+
+For the editing task, the model is trained in a self-supervised inpainting manner using random masks, whereas real users would more often edit semantically meaningful regions (e.g., objects, faces) rather than random patches.
+Do you think this mismatch between the training mask distribution and actual user behavior is significant in practice? 
+If you were to extend this work, how would you modify the masking strategy (for example, using semantic or learned masks) to better match real-world sketch-based editing scenarios?
+
+---
+
+**Q5. Limitations and most promising future direction**
+
+The paper notes that performance is still limited for complex human-centric scenes (e.g., hands, multiple interacting people) and for more challenging motion, and suggests that stronger 3D priors such as SMPL-X might help.
+Among the possible extensions-integrating 3D human priors, using pose keypoints instead of free-form sketches, or simply upgrading the text-to-video backbone-which direction do you personally find the most promising, and why? 
+How do you think that direction would interact with the current sketch-based conditioning framework?
+
+---
+
+이 5개면 “구조 이해 + 비판적 시각 + 후속 연구 아이디어”까지 다 들어가 있어서, 교수님 입장에서 봐도 꽤 수준 높게 보일 거야.
+
