@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at RV32ICPU.v(29): object "branch" differs only in case from object "Branch" in the same scope
+Info (10281): Verilog HDL Declaration information at RV32ICPU.v(397): object "Memwrite" differs only in case from object "MemWrite" in the same scope

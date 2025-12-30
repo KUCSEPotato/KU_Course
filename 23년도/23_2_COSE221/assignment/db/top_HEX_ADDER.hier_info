@@ -1,0 +1,536 @@
+|top_HEX_ADDER
+SW[0] => input3[0].IN2
+SW[1] => input3[1].IN2
+SW[2] => input3[2].IN2
+SW[3] => input3[3].IN2
+SW[4] => input2[0].IN2
+SW[5] => input2[1].IN2
+SW[6] => input2[2].IN2
+SW[7] => input2[3].IN2
+SW[8] => input1[0].IN2
+SW[9] => input1[1].IN2
+SW[10] => input1[2].IN2
+SW[11] => input1[3].IN2
+SW[12] => input0[0].IN2
+SW[13] => input0[1].IN2
+SW[14] => input0[2].IN2
+SW[15] => input0[3].IN2
+HEX7[0] <= digit_to_7seg:hex7.port1
+HEX7[1] <= digit_to_7seg:hex7.port1
+HEX7[2] <= digit_to_7seg:hex7.port1
+HEX7[3] <= digit_to_7seg:hex7.port1
+HEX7[4] <= digit_to_7seg:hex7.port1
+HEX7[5] <= digit_to_7seg:hex7.port1
+HEX7[6] <= digit_to_7seg:hex7.port1
+HEX6[0] <= digit_to_7seg:hex6.port1
+HEX6[1] <= digit_to_7seg:hex6.port1
+HEX6[2] <= digit_to_7seg:hex6.port1
+HEX6[3] <= digit_to_7seg:hex6.port1
+HEX6[4] <= digit_to_7seg:hex6.port1
+HEX6[5] <= digit_to_7seg:hex6.port1
+HEX6[6] <= digit_to_7seg:hex6.port1
+HEX5[0] <= digit_to_7seg:hex5.port1
+HEX5[1] <= digit_to_7seg:hex5.port1
+HEX5[2] <= digit_to_7seg:hex5.port1
+HEX5[3] <= digit_to_7seg:hex5.port1
+HEX5[4] <= digit_to_7seg:hex5.port1
+HEX5[5] <= digit_to_7seg:hex5.port1
+HEX5[6] <= digit_to_7seg:hex5.port1
+HEX4[0] <= digit_to_7seg:hex4.port1
+HEX4[1] <= digit_to_7seg:hex4.port1
+HEX4[2] <= digit_to_7seg:hex4.port1
+HEX4[3] <= digit_to_7seg:hex4.port1
+HEX4[4] <= digit_to_7seg:hex4.port1
+HEX4[5] <= digit_to_7seg:hex4.port1
+HEX4[6] <= digit_to_7seg:hex4.port1
+HEX2[0] <= <VCC>
+HEX2[1] <= HEX_ADDER:hex_adder1.port4
+HEX2[2] <= HEX_ADDER:hex_adder1.port4
+HEX2[3] <= <VCC>
+HEX2[4] <= <VCC>
+HEX2[5] <= <VCC>
+HEX2[6] <= <VCC>
+HEX1[0] <= digit_to_7seg:hex1.port1
+HEX1[1] <= digit_to_7seg:hex1.port1
+HEX1[2] <= digit_to_7seg:hex1.port1
+HEX1[3] <= digit_to_7seg:hex1.port1
+HEX1[4] <= digit_to_7seg:hex1.port1
+HEX1[5] <= digit_to_7seg:hex1.port1
+HEX1[6] <= digit_to_7seg:hex1.port1
+HEX0[0] <= digit_to_7seg:hex0.port1
+HEX0[1] <= digit_to_7seg:hex0.port1
+HEX0[2] <= digit_to_7seg:hex0.port1
+HEX0[3] <= digit_to_7seg:hex0.port1
+HEX0[4] <= digit_to_7seg:hex0.port1
+HEX0[5] <= digit_to_7seg:hex0.port1
+HEX0[6] <= digit_to_7seg:hex0.port1
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0
+a[0] => a[0].IN1
+a[1] => a[1].IN1
+a[2] => a[2].IN1
+a[3] => a[3].IN1
+b[0] => b[0].IN1
+b[1] => b[1].IN1
+b[2] => b[2].IN1
+b[3] => b[3].IN1
+cin => cin.IN1
+sout[0] <= _4bit_FA:_4FA0.s
+sout[1] <= _4bit_FA:_4FA0.s
+sout[2] <= _4bit_FA:_4FA0.s
+sout[3] <= _4bit_FA:_4FA0.s
+carry_out <= _4bit_FA:_4FA0.cout
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0|_4bit_FA:_4FA0
+a[0] => a[0].IN1
+a[1] => a[1].IN1
+a[2] => a[2].IN1
+a[3] => a[3].IN1
+b[0] => b[0].IN1
+b[1] => b[1].IN1
+b[2] => b[2].IN1
+b[3] => b[3].IN1
+cin => cin.IN1
+s[0] <= _1bit_FA:FA0.s
+s[1] <= _1bit_FA:FA1.s
+s[2] <= _1bit_FA:FA2.s
+s[3] <= _1bit_FA:FA3.s
+cout <= _1bit_FA:FA3.cout
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0|_4bit_FA:_4FA0|_1bit_FA:FA0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0|_4bit_FA:_4FA0|_1bit_FA:FA1
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0|_4bit_FA:_4FA0|_1bit_FA:FA2
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder0|_4bit_FA:_4FA0|_1bit_FA:FA3
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1
+a[0] => a[0].IN1
+a[1] => a[1].IN1
+a[2] => a[2].IN1
+a[3] => a[3].IN1
+b[0] => b[0].IN1
+b[1] => b[1].IN1
+b[2] => b[2].IN1
+b[3] => b[3].IN1
+cin => cin.IN1
+sout[0] <= _4bit_FA:_4FA0.s
+sout[1] <= _4bit_FA:_4FA0.s
+sout[2] <= _4bit_FA:_4FA0.s
+sout[3] <= _4bit_FA:_4FA0.s
+carry_out <= _4bit_FA:_4FA0.cout
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1|_4bit_FA:_4FA0
+a[0] => a[0].IN1
+a[1] => a[1].IN1
+a[2] => a[2].IN1
+a[3] => a[3].IN1
+b[0] => b[0].IN1
+b[1] => b[1].IN1
+b[2] => b[2].IN1
+b[3] => b[3].IN1
+cin => cin.IN1
+s[0] <= _1bit_FA:FA0.s
+s[1] <= _1bit_FA:FA1.s
+s[2] <= _1bit_FA:FA2.s
+s[3] <= _1bit_FA:FA3.s
+cout <= _1bit_FA:FA3.cout
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1|_4bit_FA:_4FA0|_1bit_FA:FA0
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1|_4bit_FA:_4FA0|_1bit_FA:FA1
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1|_4bit_FA:_4FA0|_1bit_FA:FA2
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|HEX_ADDER:hex_adder1|_4bit_FA:_4FA0|_1bit_FA:FA3
+a => cout.IN0
+a => s.IN0
+b => cout.IN1
+b => s.IN1
+cin => cout.IN1
+cin => s.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex7
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex6
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex5
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex4
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top_HEX_ADDER|digit_to_7seg:hex0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN0
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[0] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[1] => _7seg.IN1
+digit[1] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN0
+digit[2] => _7seg.IN1
+digit[2] => _7seg.IN0
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+digit[3] => _7seg.IN1
+_7seg[0] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[1] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[2] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[3] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[4] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[5] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+_7seg[6] <= _7seg.DB_MAX_OUTPUT_PORT_TYPE
+
+
